@@ -2,7 +2,7 @@
  * @Author: btbrad
  * @Date: 2019-07-22 23:40:16
  * @LastEditors: btbrad
- * @LastEditTime: 2019-07-23 00:43:44
+ * @LastEditTime: 2019-07-23 00:47:16
  * @Description:
  */
 {
@@ -43,7 +43,6 @@
     calc_1.addEventListener('click', function (event) {
         if (event.target instanceof HTMLButtonElement) {
             var text = event.target.textContent;
-            console.log(text);
             // 如果点击的是数字
             if ('0123456789'.indexOf(text) > -1) {
                 // 如果运算读存在
@@ -53,10 +52,12 @@
                     span_1.textContent = n2_1;
                 }
                 else {
+                    // 运算符不存在，则为第一个字符串
                     result_1 = '';
                     n1_1 += text;
                     span_1.textContent = n1_1;
                 }
+                // 如果不是数字 是四则运算符其中之一
             }
             else if ('+-*÷'.indexOf(text) > -1) {
                 if (result_1) {
@@ -70,16 +71,19 @@
                 n1_1 = '';
                 n2_1 = '';
                 operator_1 = '';
+                span_1.textContent = result_1;
             }
             else if (text === 'Clear') {
                 result_1 = '';
                 n1_1 = '';
                 n2_1 = '';
                 operator_1 = '';
+                span_1.textContent = '0';
             }
             else {
                 console.log('invalid input');
             }
+            console.log('n1-' + n1_1, 'n2-' + n2_1, 'operator-' + operator_1, 'result-' + result_1);
         }
     });
     // 定义createButton
@@ -102,7 +106,7 @@
         var div = document.createElement('div');
         div.classList.add('row');
         textList.forEach(function (text) {
-            createButton_1(text, div, "text=" + text);
+            createButton_1(text, div, "text-" + text);
         });
         calc_1.appendChild(div);
     });

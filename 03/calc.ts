@@ -55,10 +55,12 @@
           n2 += text
           span.textContent = n2
         } else {
+          // 运算符不存在，则为第一个字符串
           result = ''
           n1 += text
           span.textContent = n1
         }
+        // 如果不是数字 是四则运算符其中之一
       } else if ('+-*÷'.indexOf(text) > -1) {
         if (result) {
           n1 = result
@@ -70,15 +72,22 @@
         n1 = ''
         n2 = ''
         operator = ''
+        span.textContent = result
       } else if (text === 'Clear') {
         result = ''
         n1 = ''
         n2 = ''
         operator = ''
+        span.textContent = '0'
       } else {
         console.log('invalid input')
       }
-      console.log(n1, n2, operator, result)
+      console.log(
+        'n1-' + n1,
+        'n2-' + n2,
+        'operator-' + operator,
+        'result-' + result
+      )
     }
   })
 
@@ -108,7 +117,7 @@
     let div = document.createElement('div')
     div.classList.add('row')
     textList.forEach((text: number | string) => {
-      createButton(text, div, `text=${text}`)
+      createButton(text, div, `text-${text}`)
     })
     calc.appendChild(div)
   })
